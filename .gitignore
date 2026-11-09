@@ -36,3 +36,9 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Secrets: never commit API keys or Firebase credentials ###
+.env
+*serviceAccount*.json
+.idea/
+*.class
