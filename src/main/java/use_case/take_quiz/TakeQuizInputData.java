@@ -4,7 +4,6 @@ import java.util.List;
 
 /**
  * The answers the quiz taker has given so far, in question order.
- * Each number is the index of the chosen option.
  */
 
 public class TakeQuizInputData {
