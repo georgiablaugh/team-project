@@ -17,15 +17,15 @@ public class SaveResultInteractor implements SaveResultInputBoundary {
     public void execute(SaveResultInputData input) {
 
         // Invalid name like "" or "   "
-        String name = input.getUsername();
-        if (name == null || name.isBlank()) {
+        String username = input.getUsername();
+        if (username == null || username.isBlank()) {
             presenter.prepareFailView("Please enter a name.");
             return;
         }
         
         // Build QuizResult result
         QuizResult result = new QuizResult(
-            name.trim(),
+            username.trim(),
             LocalDate.now(),
             input.getChosenIndices(),
             input.getMatchedLibrary()
@@ -35,7 +35,7 @@ public class SaveResultInteractor implements SaveResultInputBoundary {
         dao.save(result);
 
         // Thank you page
-        presenter.prepareSuccessView(new SaveResultOutputData(name.trim(), input.getMatchedLibrary()));
+        presenter.prepareSuccessView(new SaveResultOutputData(username.trim(), input.getMatchedLibrary()));
     }
 }
 
