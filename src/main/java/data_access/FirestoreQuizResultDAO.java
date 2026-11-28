@@ -10,6 +10,7 @@ import com.google.firebase.cloud.FirestoreClient;
 import entity.Library;
 import entity.QuizResult;
 import use_case.save_result.SaveResultDataAccessInterface;
+import use_case.view_history.ViewHistoryDataAccessInterface;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -23,7 +24,8 @@ import java.util.concurrent.ExecutionException;
 /**
  * Saves and loads quiz results in Firebase Firestore (collection "quizResults").
  */
-public class FirestoreQuizResultDAO implements SaveResultDataAccessInterface {
+public class FirestoreQuizResultDAO implements SaveResultDataAccessInterface,
+        ViewHistoryDataAccessInterface {
     private static final String COLLECTION = "quizResults";
     private final Firestore db;
 
@@ -57,6 +59,7 @@ public class FirestoreQuizResultDAO implements SaveResultDataAccessInterface {
     }
 
     // Retrieve QuizResult by username
+    @Override
     public List<QuizResult> findByUserName(String userName) {
         try {
             List<QueryDocumentSnapshot> docs = db.collection(COLLECTION)
